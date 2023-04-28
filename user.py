@@ -16,7 +16,7 @@ mycursor.execute("USE phone_specifications")
 import prettytable
 
 # define a function to display all the data from the 'specifications' table
-def display_data():
+def display_data(a,b):
     # execute a SQL query to select all the columns from the 'specifications' table
     mycursor.execute("SELECT * FROM specifications")
     
@@ -39,48 +39,39 @@ def display_data():
         # print a message if there are no rows
         print("No data available.")
 
-# define a function to display only the model names from the 'specifications' table
-def display():
-    # execute a SQL query to select only the 'Model_Name' column from the 'specifications' table
-    mycursor.execute("SELECT `Model_Name` FROM `specifications`")
-    
-    # fetch all the rows returned by the SQL query
-    rows = mycursor.fetchall()
-    
-    # check if there are any rows
-    if rows:
-        # create a prettytable object with a single column named 'Model Name'
-        table = prettytable.PrettyTable(['Model Name'])
-        
-        # loop through each row and add the model name to the prettytable object
-        for row in rows:
-            table.add_row([row[0]])
-        
-        # print the prettytable object
-        print(table)
-    else:
-        # print a message if there are no rows
-        print("No data available.")
-
-
 #class declaration
 
-class PhoneSpecifications:
+class Phone:
   
-  #constructor to connect mysql    
-  def __init__(self):
-    self.mydb = mysql.connector.connect(
-      host="localhost",
-      user="root",
-      password="classic",
-      database="phone_specifications"
-    )
-    self.mycursor = self.mydb.cursor()
-    #to compare specific specs
+    def __init__(self):
+        self.mydb = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="classic",
+            database="phone_specifications"
+        )
+        self.mycursor = self.mydb.cursor()
+
+    def display_data(self):
+        self.mycursor.execute("SELECT `Model_Name` FROM `specifications`")
+        rows = self.mycursor.fetchall()
+        if rows:
+            table = prettytable.PrettyTable(['Model Name'])
+            for row in rows:
+                table.add_row([row[0]])
+            print(table)
+        else:
+            print("No data available.")
+
+phone_=Phone()
+phone_.display_data() # display function called
+
+
+class PhoneSpecifications(Phone):
   def search(self):
-    column = input("Enter the column to search\n1.OS\n2.Memory\n3.Battery\n4.Price\n5.Camera\n6.Review\n")#user input taken
+    choice_specs= input("Enter the specifications you require\n1.OS\n2.Memory\n3.Battery\n4.Price\n5.Camera\n6.Review\n")#user input taken
     #first case being checked
-    if(column == "1"):
+    if(choice_specs == "1"):
         #processing user request
         
         a=input("Enter number of phone to compare : ")#user input taken
@@ -247,7 +238,7 @@ class PhoneSpecifications:
             for row in results5:
                 table.add_row([value5, row[0]])
             print(table)
-    if(column == "2"):
+    if(choice_specs == "2"):
         a=input("Enter number of phone to compare : ")#user input taken
         if a== "1":
             value = input("Enter the model name: ")#user input taken
@@ -412,7 +403,7 @@ class PhoneSpecifications:
             print(table)
 
     
-    if(column == "3"):
+    if(choice_specs == "3"):
         a=input("Enter number of phone to compare : ")#user input taken
         if a== "1":
             value = input("Enter the model name: ")#user input taken
@@ -566,7 +557,7 @@ class PhoneSpecifications:
             print(table)
 
     
-    if(column == "4"):
+    if(choice_specs == "4"):
         a=input("Enter number of phone to compare : ")#user input taken
         if a== "1":
             value = input("Enter the model name: ")#user input taken
@@ -720,7 +711,7 @@ class PhoneSpecifications:
  
 
 
-    if(column == "5"):
+    if(choice_specs == "5"):
         a=input("Enter number of phone to compare : ")
         if a== "1":
             value = input("Enter the model name: ")
@@ -876,7 +867,7 @@ class PhoneSpecifications:
 
 
     
-    if(column == "6"):
+    if(choice_specs == "6"):
         a=input("Enter number of phone to compare : ")
         if a== "1":
             value = input("Enter the model name: ")
@@ -1217,10 +1208,12 @@ class PhoneSpecifications:
             
 #object for class phonespecification made
 phone_specs = PhoneSpecifications()
-display()#display function called
+"""
+phone_=Phone()
+phone_.display_data(1)#display function called"""
 while True:
   print("1. COMPARE PHONES")
-  print("2. SEARCH PHONE SPECIFICATIONS")
+  print("2. COMPARE PHONES BY SPECIFICATIONS")
   print("3. REVIEW A PHONE")
   print("4. DISPLAY")
   print("5. EXIT")
@@ -1236,10 +1229,13 @@ while True:
     phone_specs.review()#review function called
 
   elif choice == "4":
-    display_data()#display_data function called
+    display_data(2,3)#display_data function called
     
   elif choice == "5":
       break#loop exitted
   else:
       print("Invalid choice. Please enter a number between 1 and 3.")
+
+
+
 print("Program terminated. Run again.")

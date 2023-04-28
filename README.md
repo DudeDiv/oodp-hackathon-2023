@@ -13,21 +13,21 @@ Explanation for the "admin.py" code:
 
 This code is a Python program for managing phone specifications using MySQL database. The program provides four options to the user:
 
-Add a new phone specification to the database
-Delete a phone specification from the database
-Modify a phone specification in the database
-Exit the program
+1. Add a new phone specification to the database
+2. Delete a phone specification from the database
+3. Modify a phone specification in the database
+4. Exit the program
 The program first imports the necessary modules - mysql.connector and PrettyTable. It then connects to the MySQL server and selects the database called "phone_specifications".
 
 Next, there are four functions defined:
 
-display_data() function is used to retrieve all phone specifications from the database and display them in a formatted table using the PrettyTable library.
+1. display_data() function is used to retrieve all phone specifications from the database and display them in a formatted table using the PrettyTable library.
 
-add_data() function is used to add a new phone specification to the database. The user is prompted to enter the values for Model Name, OS, Memory, Battery, Price, Camera and Review. The values entered are then inserted into the "specifications" table in the database.
+2. add_data() function is used to add a new phone specification to the database. The user is prompted to enter the values for Model Name, OS, Memory, Battery, Price, Camera and Review. The values entered are then inserted into the "specifications" table in the database.
 
-delete_data() function is used to delete a phone specification from the database. The user is prompted to enter the Model Name of the phone specification to be deleted. The specified record is then deleted from the "specifications" table in the database.
+3. delete_data() function is used to delete a phone specification from the database. The user is prompted to enter the Model Name of the phone specification to be deleted. The specified record is then deleted from the "specifications" table in the database.
 
-modify_data() function is used to modify a phone specification in the database. The user is prompted to enter the Model Name of the phone specification to be modified, the field name to be modified, and the new value for the specified field. The specified record is then updated in the "specifications" table in the database.
+4. modify_data() function is used to modify a phone specification in the database. The user is prompted to enter the Model Name of the phone specification to be modified, the field name to be modified, and the new value for the specified field. The specified record is then updated in the "specifications" table in the database.
 
 After defining the functions, the program displays all the phone specifications using the display_data() function. Then the program enters a while loop, which provides the user with options to either add a new phone specification, delete a phone specification, modify a phone specification or exit the program. Depending on the user's choice, the corresponding function is called.
 

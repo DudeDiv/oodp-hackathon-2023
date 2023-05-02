@@ -1235,7 +1235,4 @@ while True:
       break#loop exitted
   else:
       print("Invalid choice. Please enter a number between 1 and 3.")
-
-
-
 print("Program terminated. Run again.")

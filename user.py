@@ -1,3 +1,4 @@
+
 #main code for phone_specs
 import mysql.connector
 from prettytable import PrettyTable
@@ -1235,4 +1236,7 @@ while True:
       break#loop exitted
   else:
       print("Invalid choice. Please enter a number between 1 and 3.")
+
+
+
 print("Program terminated. Run again.")
